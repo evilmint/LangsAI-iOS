@@ -36,4 +36,4 @@ LangsAI sends your translations to the configured LLM service for evaluation. No
 
 ## License
 
-LangsAI is licensed under the MIT License.
+LangsAI is licensed under Apache License, Version 2.0
