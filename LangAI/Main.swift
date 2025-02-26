@@ -109,7 +109,7 @@ struct Main {
                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 #endif
 
-                return .run { [llmEndpoint, llmSecret, targetLanguage] send in
+                return .run { [llmEndpoint, llmModel, llmSecret, targetLanguage] send in
                     let prompt = try promptClient.rateTranslation(
                         original: originalText,
                         translation: translation,
@@ -122,6 +122,7 @@ struct Main {
                     #endif
                     let output = try await llmClient.chat(
                         endpoint: llmEndpoint,
+                        model: llmModel,
                         bearer: llmSecret,
                         input: prompt
                     )

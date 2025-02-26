@@ -6,6 +6,7 @@ struct PreferencesView: View {
 
     @Shared(.appStorage("llmEndpoint")) var llmEndpoint = ""
     @Shared(.appStorage("llmSecret")) var llmSecret = ""
+    @Shared(.appStorage("llmModel")) var llmModel = ""
     @Shared(.appStorage("sourceLanguage")) var sourceLanguage = ""
     @Shared(.appStorage("targetLanguage")) var targetLanguage = ""
     @Shared(.appStorage("cefrLevel")) var cefrLevel = ""
@@ -23,6 +24,13 @@ struct PreferencesView: View {
                     Text("LLM Secret")
                 }
                 .frame(maxWidth: 440)
+            }
+
+            HStack {
+                TextField(text: Binding($llmModel)) {
+                    Text("LLM Model")
+                }
+                .frame(maxWidth: 150)
             }
 
             HStack {

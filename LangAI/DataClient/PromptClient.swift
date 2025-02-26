@@ -1,4 +1,4 @@
-import ComposableArchitecture
+ import ComposableArchitecture
 import Foundation
 
 @DependencyClient
@@ -27,12 +27,14 @@ extension PromptClient: DependencyKey {
             }
 
             return """
-            You gave me the sentence \"\(original)\" to translate into \(targetLanguage). 
-            Here's my attempt: \"\(translation)\". 
-            Rate it on CEFR A1-C2 scale and on 1-10 scale and give me tips. 
+            You are a language teacher.
+            You gave the student the sentence \"\(original)\" to translate into \(targetLanguage). 
+            Here's the student's attempt: \"\(translation)\". 
+            Rate the translation (not the sentence) on A1-C2 scale and on 1-10 scale and give the user tips to improve. 
             Don't be harsh with the rating, considering the words an average person knows at each level. 
-            Be encouraging in the short description and tips. 
-            Output the your feedback into this json in the \(sourceLanguage) language and don't output anything else than this json, also skip markdown tags like json```, but you are allowed to use markdown INSIDE the json. 
+            Be encouraging in the short description and tips.
+            Small errors should not drastically drop the level, especially if the student made typos.
+            Output the your feedback into this json in the \(sourceLanguage) language and don't output anything else than this json, also skip markdown tags like json```, but you are allowed to use markdown INSIDE the json.
             Please bolden the replaced words with markdown in the corrected translation. 
             Here's the json: \(json)
             """
@@ -46,8 +48,7 @@ extension PromptClient: DependencyKey {
 
             let structure = #"{"sentence": "sentence_here"}"#
             return """
-            Give me a random sentence which would take place in a \(context.name) context, at \(cefrLevel) CEFR level in \(sourceLanguage) 
-            in json in the structure \(json). 
+            Give me a random sentence which would take place in a \(context.name) setting. The sentence should resemble the \(cefrLevel) CEFR level in \(sourceLanguage) language in json in the structure \(json). 
             Also don't write anything else apart from the json, not even the markdown/formatting quotes.
             """
         }
