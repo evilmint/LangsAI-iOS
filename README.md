@@ -2,7 +2,7 @@
 
 LangsAI is a macOS application designed to help users improve their language translation skills. The app generates sentences using LLM in a source language and evaluates the user's translations, providing feedback.
 
-![LangsAI Screenshot](../screenshots/screenshot_1.png)
+![LangsAI Screenshot](screenshots/screenshot_1.png)
 
 ## Features
 
